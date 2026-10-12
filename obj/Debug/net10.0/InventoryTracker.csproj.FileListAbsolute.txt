@@ -1,0 +1,14 @@
+C:\Users\Makmak\Documents\GithubProject\InventoryTracker\obj\Debug\net10.0\InventoryTracker.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Makmak\Documents\GithubProject\InventoryTracker\obj\Debug\net10.0\InventoryTracker.AssemblyInfoInputs.cache
+C:\Users\Makmak\Documents\GithubProject\InventoryTracker\obj\Debug\net10.0\InventoryTracker.AssemblyInfo.cs
+C:\Users\Makmak\Documents\GithubProject\InventoryTracker\obj\Debug\net10.0\InventoryTracker.csproj.CoreCompileInputs.cache
+C:\Users\Makmak\Documents\GithubProject\InventoryTracker\bin\Debug\net10.0\InventoryTracker.exe
+C:\Users\Makmak\Documents\GithubProject\InventoryTracker\bin\Debug\net10.0\InventoryTracker.deps.json
+C:\Users\Makmak\Documents\GithubProject\InventoryTracker\bin\Debug\net10.0\InventoryTracker.runtimeconfig.json
+C:\Users\Makmak\Documents\GithubProject\InventoryTracker\bin\Debug\net10.0\InventoryTracker.dll
+C:\Users\Makmak\Documents\GithubProject\InventoryTracker\bin\Debug\net10.0\InventoryTracker.pdb
+C:\Users\Makmak\Documents\GithubProject\InventoryTracker\obj\Debug\net10.0\InventoryTracker.dll
+C:\Users\Makmak\Documents\GithubProject\InventoryTracker\obj\Debug\net10.0\refint\InventoryTracker.dll
+C:\Users\Makmak\Documents\GithubProject\InventoryTracker\obj\Debug\net10.0\InventoryTracker.pdb
+C:\Users\Makmak\Documents\GithubProject\InventoryTracker\obj\Debug\net10.0\InventoryTracker.genruntimeconfig.cache
+C:\Users\Makmak\Documents\GithubProject\InventoryTracker\obj\Debug\net10.0\ref\InventoryTracker.dll
