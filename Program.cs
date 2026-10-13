@@ -124,12 +124,8 @@ namespace InventoryTracker
             }
             foreach(Products products in inventory)
             {
-                Console.WriteLine($"Id: {products.Id}");
-                Console.WriteLine($"Name: {products.Name}");
-                Console.WriteLine($"Price: ${products.Price}");
-                Console.WriteLine($"Quantity: {products.Quantity}");
                 Console.WriteLine();
-                
+                products.ViewProduct();
             }
         }
         static void searchProduct()
