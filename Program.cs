@@ -12,7 +12,9 @@ namespace InventoryTracker
       Console.WriteLine("Hello User! Welcome to Inventory Tracker Console App!");
       Console.WriteLine();
       int userChoice;
+      
       bool running = true;
+
       void Menu()
         {    
             string[] menu =
@@ -21,8 +23,6 @@ namespace InventoryTracker
                 "Add Product",
                 "View Product",
                 "Search Product",
-                "Delete Product",
-                "Update Product",
                 "View Inventory Summary",
                 "View Low stock Product"
             };
@@ -55,18 +55,15 @@ namespace InventoryTracker
                         break;
                     case 3:
                         searchProduct();
+                        running = whatsNext();
                         break;
                     case 4:
-                        DeleteProduct();
+                        ViewInventorySummary();
+                        running = whatsNext();
                         break;
                     case 5:
-                        UpdateProduct();
-                        break;
-                    case 6:
-                        ViewInventorySummary();
-                        break;
-                    case 7:
                         ViewLowStockProduct();
+                        running = whatsNext();
                         break;
 
                     default:
@@ -137,15 +134,83 @@ namespace InventoryTracker
         }
         static void searchProduct()
             {
-                return;
-            }
-        static void DeleteProduct()
-            {
-                return;
-            }
-        static void UpdateProduct()
-            {
-                return;
+                Console.WriteLine();
+                Console.WriteLine("======== Search Product ========");
+                Console.WriteLine();
+
+                Console.Write("Search Product Name: ");
+                string Search = (Console.ReadLine() ?? "") .Trim();
+                List<Products> results = inventory.Where(p =>
+                    p.Name.Contains(Search, StringComparison.OrdinalIgnoreCase)).ToList();
+                if (results.Count == 0)
+                {
+                    Console.WriteLine("Product not found.");
+                    return;
+                }
+                foreach(Products products in results)
+                {
+                    if(Search == products.Name)
+                    {
+                        Console.WriteLine();
+                        products.ViewProduct();
+                        Console.Write("[0] Back  ||  [1] Update || [2] Delete    : ");
+                        int choice = Convert.ToInt32(Console.ReadLine());
+                        if(choice == 2)
+                        {
+                            Console.Write("Do you want to delete this product {products.Name}? [Y/N] ");
+                            string confirmation = (Console.ReadLine() ?? "").Trim();
+                            if(confirmation == null)
+                            {
+                                Console.WriteLine("Must enter a confirmation");
+                            }
+                            if (confirmation == "y" || confirmation == "Y")
+                            {
+                                Console.WriteLine($"{products.Name} has been deleted! ");
+                                inventory.Remove(products);
+                            }
+                        } else if(choice == 1)
+                        {
+                            Console.Write($"New name (Enter to keep {products.Name}): ");
+                            string name = (Console.ReadLine() ?? "").Trim();
+
+                            if (!string.IsNullOrWhiteSpace(name))
+                            {
+                                products.Name = name;
+                            }
+
+                            Console.Write($"New price (Enter to keep {products.Price:N2}): ");
+                            string priceInput = (Console.ReadLine() ?? "").Trim();
+
+                            if (priceInput.Length > 0)
+                            {
+                                if (!decimal.TryParse(priceInput, out decimal price) || price < 0)
+                                {
+                                    Console.WriteLine("Invalid price. Update cancelled.");
+                                    return;
+                                }
+
+                                products.Price = price;
+                            }
+
+                            Console.Write($"New quantity (Enter to keep {products.Quantity}): ");
+                            string quantityInput = (Console.ReadLine() ?? "").Trim();
+
+                            if (quantityInput.Length > 0)
+                            {
+                                if (!int.TryParse(quantityInput, out int quantity) || quantity < 0)
+                                {
+                                    Console.WriteLine("Invalid quantity. Update cancelled.");
+                                    return;
+                                }
+
+                                products.Quantity = quantity;
+                            }
+
+                            Console.WriteLine("Product updated successfully!");
+                        }
+                    }
+
+                }
             }
         static void ViewInventorySummary()
             {
