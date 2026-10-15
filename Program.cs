@@ -125,7 +125,8 @@ namespace InventoryTracker
             foreach(Products products in inventory)
             {
                 Console.WriteLine();
-                products.ViewProduct();
+                Console.WriteLine($"Id: {products.Id} | Name: {products.Name} | Price: {products.Price} | Quantity: {products.Quantity}");
+                
             }
         }
         static void searchProduct()
@@ -210,11 +211,32 @@ namespace InventoryTracker
             }
         static void ViewInventorySummary()
             {
-                return;
+                int totalType = inventory.Count();
+                int totalProductUnit = inventory.Sum(p => p.Quantity);
+                decimal totalProductValue = inventory.Sum(p => p.Price * p.Quantity);
+
+                Console.WriteLine("======== Inventory Summary ========");
+                Console.WriteLine($"Product Type: {totalType}");
+                Console.WriteLine($"Total Product Unit: {totalProductUnit}");
+                Console.WriteLine($"Total Inventory Value: {totalProductValue:N2}");
+                Console.WriteLine();
             }
         static void ViewLowStockProduct()
             {
-                return;
+                Console.WriteLine("======== View Low Stock Products ========");
+                Console.WriteLine();
+                List<Products> lowStock = inventory.Where(p => p.Quantity <= 5).ToList();
+
+                if(lowStock.Count == 0)
+                {
+                    Console.WriteLine("No low stock products found");
+                    return;
+                }
+
+                foreach(Products products in lowStock)
+                {
+                    Console.WriteLine($"ID: {products.Id} | Name: {products.Name} " + $" Stock: {products.Quantity}");
+                }
             }
         static bool whatsNext()
         {
@@ -225,10 +247,10 @@ namespace InventoryTracker
 
             if (choice == 1)
             {
-                return false; // Exit the program
+                return false;
             }
 
-            return true; // Return to the menu
+            return true;
         }
     }
   }
